@@ -10,6 +10,7 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+
   end
 
   # GET /posts/new
@@ -19,6 +20,15 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+  end
+
+  # GET /posts/:yyyy/:mm/
+  def monthly
+  end
+
+  # GET /posts/:yyyy/:mm/:dd
+  def daily
+
   end
 
   # POST /posts

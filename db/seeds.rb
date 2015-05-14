@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+#
+
+user = User.create! email: "r-fujiwara@nekojarashi.com", password: "password", password_confirmation: "password"
+
+100.times do |i|
+  Post.create! user_id: user.id, title: "http://stackoverflow.com/questions/#{(rand * i * 1000).to_i}/bat-file-write-a-new-variable-to-a-msl-txt-file", content: "fugafuga-#{i}", url: "http://stackoverflow.com/questions/#{(rand * i * 1000).to_i}/bat-file-write-a-new-variable-to-a-msl-txt-file"
+end
+

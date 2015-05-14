@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception, unless: :need_oauth_authenticate
   before_action :authenticate_user!
 
-  before_action :doorkeeper_authorize!
+  #before_action :doorkeeper_authorize!
 
   def need_oauth_authenticate
     true
@@ -19,6 +19,10 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user!
     set_parameter_from_accesstoken
+  end
+
+  def auth
+
   end
 
 end
