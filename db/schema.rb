@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150513055601) do
+ActiveRecord::Schema.define(version: 20150514024953) do
 
   create_table "oauth_access_grants", force: :cascade do |t|
     t.integer  "resource_owner_id", null: false
@@ -54,10 +54,10 @@ ActiveRecord::Schema.define(version: 20150513055601) do
   add_index "oauth_applications", ["uid"], name: "index_oauth_applications_on_uid", unique: true
 
   create_table "posts", force: :cascade do |t|
-    t.string   "title"
+    t.text     "title"
     t.integer  "user_id"
     t.text     "url"
-    t.string   "content"
+    t.text     "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -79,5 +79,15 @@ ActiveRecord::Schema.define(version: 20150513055601) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+  create_table "users_posts", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "users_posts", ["post_id"], name: "index_users_posts_on_post_id"
+  add_index "users_posts", ["user_id"], name: "index_users_posts_on_user_id"
 
 end

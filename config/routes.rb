@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   use_doorkeeper
   devise_for :users
 
-  get 'posts/:yyyy/:mm/:dd', to: 'posts#monthly'
-  get 'posts/daily', to: 'posts#daily'
+  get 'posts/:yyyy/:mm/', to: 'posts#monthly'
+  get 'posts/:yyyy/:mm/:dd', to: 'posts#daily'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,0 +1,54 @@
+models:
+  users:
+    1:
+      email: "r-fujiwara@nekojarashi.com"
+      password: "password"
+      password_confirmation: "password"
+    2:
+      email: "fjwr0516@gmail.com"
+      password: "password"
+      password_confirmation: "password"
+  posts:
+    1:
+      user_id: 1
+      title: 'stackoverflow.com/questions/25515936/perform-curl-request-in-javascript'
+      url: 'http://stackoverflow.com/questions/25515936/perform-curl-request-in-javascript'
+    2:
+      user_id: 2
+      title: 'stackoverflow.com/questions/10093053/add-header-in-ajax-request-with-jquery'
+      url: 'http://stackoverflow.com/questions/10093053/add-header-in-ajax-request-with-jquery'
+    3:
+      user_id: 2
+      title: 'stackoverflow.com/questions/6048022/jquery-attrdisabled-disabled-not-working-in-chrome'
+      url: 'http://stackoverflow.com/questions/6048022/jquery-attrdisabled-disabled-not-working-in-chrome'
+    4:
+      user_id: 2
+      title: 'stackoverflow.com/questions/20947191/using-reactjs-with-angularjs'
+      url: 'http://stackoverflow.com/questions/20947191/using-reactjs-with-angularjs'
+    5:
+      user_id: 1
+      title: 'stackoverflow.com/questions/20947191/using-reactjs-with-angularjs'
+      url: 'http://stackoverflow.com/questions/20947191/using-reactjs-with-angularjs'
+    6:
+      user_id: 1
+      title: "post-422-unprocessable-entity-in-rails-due-to-the-routes-or-the-controller"
+      url: "http://stackoverflow.com/questions/27098239/post-422-unprocessable-entity-in-rails-due-to-the-routes-or-the-controller"
+  users_post:
+    1:
+      post_id: 1
+      user_id: 1
+    2:
+      post_id: 2
+      user_id: 2
+    3:
+      post_id: 3
+      user_id: 2
+    4:
+      post_id: 4
+      user_id: 2
+    5:
+      post_id: 5
+      user_id: 1
+    6:
+      post_id: 6
+      user_id: 1

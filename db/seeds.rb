@@ -7,9 +7,28 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 #
 
-user = User.create! email: "r-fujiwara@nekojarashi.com", password: "password", password_confirmation: "password"
+require 'erb'
 
-100.times do |i|
-  Post.create! user_id: user.id, title: "http://stackoverflow.com/questions/#{(rand * i * 1000).to_i}/bat-file-write-a-new-variable-to-a-msl-txt-file", content: "fugafuga-#{i}", url: "http://stackoverflow.com/questions/#{(rand * i * 1000).to_i}/bat-file-write-a-new-variable-to-a-msl-txt-file"
+def import_yaml(path)
+  yaml = YAML.load(ERB.new(File.read path).result)
+
+  yaml['models'].each do |resource_key, resources|
+    klass = resource_key.classify.constantize
+
+    resources.each do |resource_id, attrs|
+      primary_key = klass.primary_key
+      if resource_id !~ /ignore/
+        next if klass.exists?(primary_key => resource_id)
+        attrs = attrs.merge(primary_key => resource_id)
+      end
+      resource = klass.new attrs
+      resource.save!
+      puts "attrs...#{attrs}"
+      resource.update_attributes!(attrs)
+    end
+
+    puts "Inserted #{klass} data."
+  end
 end
 
+import_yaml(Rails.root.join('db', "#{Rails.env}_data.yml"))
