@@ -3,7 +3,7 @@ class PublicController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
-    @resources = Post.order(created_at: :desc)
+    @resources = Post.includes(:users).order(created_at: :desc)
   end
 
 end

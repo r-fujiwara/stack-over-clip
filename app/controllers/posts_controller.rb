@@ -28,17 +28,17 @@ class PostsController < ApplicationController
 
   # GET /:user_name/:yyyy/:mm/
   def monthly
-    user = User.find_by(name: params[:name])
+    @user = User.find_by(name: params[:name])
     target = Time.new(params[:yyyy].to_i, params[:mm].to_i)
-    @resources = Post.monthly(user_id: user.id, time: target)
+    @resources = Post.monthly(user_id: @user.id, time: target).reverse
     render 'index'
   end
 
   # GET /:user_name/:yyyy/:mm/:dd
   def daily
-    user = User.find_by(name: params[:name])
+    @user = User.find_by(name: params[:name])
     target = Time.new(params[:yyyy].to_i, params[:mm].to_i, params[:dd].to_i)
-    @resources = Post.daily(user_id: user.id, time: target)
+    @resources = Post.daily(user_id: @user.id, time: target).reverse
     render 'index'
   end
 

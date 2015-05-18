@@ -5,14 +5,13 @@ Rails.application.routes.draw do
   get '/:name', to: 'users#show'
   get '/:name/today', to: 'users#today'
 
-  get '/:name/:yyyy/:mm/', to: 'posts#monthly'
-  get '/:name/:yyyy/:mm/:dd', to: 'posts#daily'
+  get '/:name/:yyyy/:mm/entries', to: 'posts#monthly'
+  get '/:name/:yyyy/:mm/:dd/entries', to: 'posts#daily'
 
   resources :posts, only: [:create]
 
   use_doorkeeper
   devise_for :users
-
 
 
   # The priority is based upon order of creation: first created -> highest priority.

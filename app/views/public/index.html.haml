@@ -1,11 +1,9 @@
-パ ブ リ ッ ク タ イ ム ラ イ ン
-%br
-
 %ul.row
   - @resources.each do |resource|
     %li
       %span
-        = resource.title
+        = image_tag resource.users.first.img_path, size: "25x25"
       %span
-        = resource.user_name
+        %a(href="#{resource.url}")
+          = resource.title
     %br

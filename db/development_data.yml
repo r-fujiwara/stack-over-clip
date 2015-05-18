@@ -6,37 +6,45 @@ models:
       private: false
       password: "password"
       password_confirmation: "password"
+      img_path: "icon.jpg"
     2:
       email: "fjwr0516@gmail.com"
       private: false
       name: "fjwr0516"
       password: "password"
       password_confirmation: "password"
+      img_path: "tatsuya.jpg"
   posts:
     1:
       user_id: 1
-      title: 'perform-curl-request-in-javascript'
+      title: 'perform curl request in javascript'
       url: 'http://stackoverflow.com/questions/25515936/perform-curl-request-in-javascript'
+      category: "javascript"
     2:
       user_id: 2
-      title: 'add-header-in-ajax-request-with-jquery'
+      title: 'add header in ajax request with jquery'
       url: 'http://stackoverflow.com/questions/10093053/add-header-in-ajax-request-with-jquery'
+      category: "jquery"
     3:
       user_id: 2
-      title: 'jquery-attrdisabled-disabled-not-working-in-chrome'
+      title: 'jquery attrdisabled disabled not working in chrome'
       url: 'http://stackoverflow.com/questions/6048022/jquery-attrdisabled-disabled-not-working-in-chrome'
+      category: "jquery"
     4:
       user_id: 2
-      title: 'using-reactjs-with-angularjs'
+      title: 'using reactjs with angularjs'
       url: 'http://stackoverflow.com/questions/20947191/using-reactjs-with-angularjs'
+      category: 'reactjs'
     5:
       user_id: 1
-      title: 'using-reactjs-with-angularjs'
+      title: 'using reactjs with angularjs'
       url: 'http://stackoverflow.com/questions/20947191/using-reactjs-with-angularjs'
+      category: 'reactjs'
     6:
       user_id: 1
-      title: "post-422-unprocessable-entity-in-rails-due-to-the-routes-or-the-controller"
+      title: "post 422 unprocessable entity in rails due to the routes or the controller"
       url: "http://stackoverflow.com/questions/27098239/post-422-unprocessable-entity-in-rails-due-to-the-routes-or-the-controller"
+      category: "rails"
   users_post:
     1:
       post_id: 1

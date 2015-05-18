@@ -1,10 +1,12 @@
-= @resource.name
-
-が今までに見たやつ
+%span
+  = image_tag @resource.img_path, size: "210x210"
+  = @resource.name
 
 %ul
 - @resource.posts.reverse.each do |post|
   %li
     %span
-      = post.title
+      = image_tag "category/#{post.category}.png", size: "25x25"
+      %a(href="#{post.url}")
+        = post.title
   %br
