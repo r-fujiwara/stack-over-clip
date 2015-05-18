@@ -1,12 +1,19 @@
 Rails.application.routes.draw do
 
-  resources :posts
+  root 'public#index'
+
+  get '/:name', to: 'users#show'
+  get '/:name/today', to: 'users#today'
+
+  get '/:name/:yyyy/:mm/', to: 'posts#monthly'
+  get '/:name/:yyyy/:mm/:dd', to: 'posts#daily'
+
+  resources :posts, only: [:create]
 
   use_doorkeeper
   devise_for :users
 
-  get 'posts/:yyyy/:mm/', to: 'posts#monthly'
-  get 'posts/:yyyy/:mm/:dd', to: 'posts#daily'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

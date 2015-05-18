@@ -1,0 +1,11 @@
+パ ブ リ ッ ク タ イ ム ラ イ ン
+%br
+
+%ul.row
+  - @resources.each do |resource|
+    %li
+      %span
+        = resource.title
+      %span
+        = resource.user_name
+    %br

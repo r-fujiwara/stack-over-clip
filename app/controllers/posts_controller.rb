@@ -1,11 +1,12 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  #skip_before_action :verify_authenticity_token
+  skip_before_action :doorkeeper_authorize!
+  skip_before_action :verify_authenticity_token
 
   # GET /posts
   # GET /posts.json
   def index
-    @resources = current_user.posts
+    @resources = Post.all
   end
 
   # GET /posts/1
@@ -25,21 +26,19 @@ class PostsController < ApplicationController
   def edit
   end
 
-  # GET /posts/:yyyy/:mm/
+  # GET /:user_name/:yyyy/:mm/
   def monthly
-    target_month = DateTime.new(params[:yyyy].to_i, params[:mm].to_i)
-    res1 = current_user.posts.where("updated_at > ?", target_month.beginning_of_month.beginning_of_day)
-    res2 = current_user.posts.where("updated_at < ?", target_month.beginning_of_month.end_of_day)
-    @resources = res1 & res2
+    user = User.find_by(name: params[:name])
+    target = Time.new(params[:yyyy].to_i, params[:mm].to_i)
+    @resources = Post.monthly(user_id: user.id, time: target)
     render 'index'
   end
 
-  # GET /posts/:yyyy/:mm/:dd
+  # GET /:user_name/:yyyy/:mm/:dd
   def daily
-    target = DateTime.new(params[:yyyy].to_i, params[:mm].to_i, params[:dd].to_i)
-    res1 = current_user.posts.where("updated_at > ?", target.beginning_of_day)
-    res2 = current_user.posts.where("updated_at < ?", target.end_of_day)
-    @resources = res1 & res2
+    user = User.find_by(name: params[:name])
+    target = Time.new(params[:yyyy].to_i, params[:mm].to_i, params[:dd].to_i)
+    @resources = Post.daily(user_id: user.id, time: target)
     render 'index'
   end
 
@@ -51,7 +50,8 @@ class PostsController < ApplicationController
       # refer article recentry or not
       @refer_recently = @resource.created_at > DateTime.now - 7.days
     else
-      @resource = Post.create(user_id: current_user.id, url: params["post"]["url"], title: params["post"]["title"])
+      @resource = Post.create!(user_id: current_user.id, url: params["post"]["url"], title: params["post"]["title"])
+      UsersPost.create! user_id: current_user.id, post_id: @resource.id
       @refer_recently = false
     end
   end

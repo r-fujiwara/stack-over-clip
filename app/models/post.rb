@@ -14,6 +14,19 @@ class Post < ActiveRecord::Base
       where(url: url).length > 1
     end
 
+    def daily(user_id:, time:)
+      where(user_id: user_id, created_at: time.beginning_of_day..time.end_of_day)
+    end
+
+    def monthly(user_id:, time:)
+      where(user_id: user_id, created_at: time.beginning_of_month..time.at_end_of_month)
+    end
+
   end
+
+  def user_name
+    User.find_by(id: user_id).name
+  end
+
 
 end

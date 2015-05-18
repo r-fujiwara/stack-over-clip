@@ -1,0 +1,10 @@
+= @resource.name
+
+が今までに見たやつ
+
+%ul
+- @resource.posts.reverse.each do |post|
+  %li
+    %span
+      = post.title
+  %br
